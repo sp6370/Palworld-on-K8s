@@ -1,5 +1,5 @@
 # Palworld-on-K8s
-A comprehensive solution for deploying Palworld on a Kubernetes Cluster.
+A one stop shop for deploying Palworld on a Kubernetes Cluster.
 
 ## Phase I:
 - [ ] Host a containerized version of Palworld on a kind cluster.
