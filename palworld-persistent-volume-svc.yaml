@@ -1,0 +1,25 @@
+# This deployment yaml  will creates PersistentVolumeClaims in order to request physical storage for our Pods
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: demo-pvc
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 5Gi
+  hostPath:
+    path: /home/sp/Github/active/Palworld-on-K8s/tmpData
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: palworld-server-datadir
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
