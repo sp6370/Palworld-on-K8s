@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: game-server-deployment
+  labels:
+    app: game-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: game-server
+  template:
+    metadata:
+      labels:
+        app: game-server
+    spec:
+      containers:
+      - name: game-server
+        image: thijsvanloef/palworld-server-docker:latest # Palworld Docker Image
+        ports:
+          - containerPort: 80
+        volumeMounts:
+          - mountPath: /palworld
+            name: datadir
+      volumes:
+        - name: datadir
+          persistentVolumeClaim:
+            claimName: palworld-server-datadir
+# https://hub.docker.com/r/thijsvanloef/palworld-server-docker
